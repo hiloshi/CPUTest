@@ -43,16 +43,11 @@ void MainWindow::on_pushButton_clicked()
     Mychart->createDefaultAxes();
     Mychart->axisY()->setRange(0,15000);
     Mychart->axisX()->setRange(0,100);
-    //PM25chart->setAnimationOptions(QChart::SeriesAnimations);
 
     MychartView = new QChartView(Mychart);
-    //PM25chartView->setRenderHint(QPainter::Antialiasing);
 
-    Mywidget = new QWidget();
-    MyvLayout = new QVBoxLayout();
-    MyvLayout->addWidget(MychartView);
-    Mywidget->setLayout(MyvLayout);
-    ui->tabWidget->addTab(Mywidget,"Chart");
+    setCentralWidget(MychartView);
+
     My_chart_max =100;
     elapse_time =0;
 
@@ -75,7 +70,6 @@ void MainWindow::UART_Receiver2()
         elapse_time++;
         QString s = QString::number(elapse_time);                       //convert int to string. . byJC
         Mychart->axisX()->setTitleText(s);
-        //qDebug()<<"count="<<UART_Read_Buffer.count();
     //-------------------------------------------
         UART_Read_Buffer.clear();
     }

@@ -35,8 +35,6 @@ private:
     QSplineSeries   *MySeries;
     QChart          *Mychart;
     QChartView      *MychartView;
-    QWidget         *Mywidget;
-    QVBoxLayout     *MyvLayout;
     int             My_x;
     int             My_y,My_y_max;
     QList           <int>MyData;

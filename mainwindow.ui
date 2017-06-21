@@ -24,28 +24,8 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>start</string>
     </property>
-   </widget>
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>781</width>
-      <height>361</height>
-     </rect>
-    </property>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Tab 1</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>Tab 2</string>
-     </attribute>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
