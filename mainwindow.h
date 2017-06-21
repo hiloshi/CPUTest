@@ -6,7 +6,7 @@
 #include <QSplineSeries>
 #include <QChart>
 #include <QChartView>
-#include <QVBoxLayout>
+#include <QTimer>
 
 using namespace QtCharts;
 
@@ -29,7 +29,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QSerialPort     *serial;
     QByteArray      UART_Read_Buffer;                        //UART Read Buffer
   //---------------------------------------------------------
     QSplineSeries   *MySeries;
@@ -40,6 +39,7 @@ private:
     QList           <int>MyData;
     int             My_chart_max;
     int             elapse_time;
+    QTimer          *MainLoopTimer;
 
 };
 

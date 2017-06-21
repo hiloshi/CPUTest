@@ -8,8 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    serial = new QSerialPort(this);
-    connect(serial, &QSerialPort::readyRead, this, &MainWindow::UART_Receiver2);
+    //serial = new QSerialPort(this);
+    //connect(serial, &QSerialPort::readyRead, this, &MainWindow::UART_Receiver2);
 }
 
 MainWindow::~MainWindow()
@@ -19,21 +19,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QByteArray data("ttyUSB0 Open OK \r\n");
-
-    serial->setPortName("ttyUSB0");
-    serial->setBaudRate(QSerialPort::Baud9600);
-    serial->setDataBits(QSerialPort::Data8);
-    serial->setParity(QSerialPort::NoParity);
-    serial->setStopBits(QSerialPort::OneStop);
-    serial->setFlowControl(QSerialPort::NoFlowControl);
-    if (serial->open(QIODevice::ReadWrite))
-    {
-        qDebug()<<"UART Open OK ";
-        serial->write(data);
-    }
-    else
-        qDebug()<<"Open UART Port Fail ";
+    MainLoopTimer = new QTimer();
+    connect(MainLoopTimer, SIGNAL(timeout()), this, SLOT(UART_Receiver2()));
+    MainLoopTimer->start(1000);
     //----------------------------------------
     MySeries = new QSplineSeries();
     MySeries->setName("QChart");
@@ -61,10 +49,7 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::UART_Receiver2()
 {
 
-    UART_Read_Buffer = UART_Read_Buffer + serial->readAll().toHex();
-
-    if(UART_Read_Buffer.count()>63)
-    {
+    UART_Read_Buffer = UART_Read_Buffer; // + serial->readAll().toHex();
 
     //--------------------------------------------                      //count number of input data. .byJC
         elapse_time++;
@@ -72,6 +57,7 @@ void MainWindow::UART_Receiver2()
         Mychart->axisX()->setTitleText(s);
     //-------------------------------------------
         UART_Read_Buffer.clear();
-    }
+        //MainLoopTimer->start(1000);
+//    }
 
 }
